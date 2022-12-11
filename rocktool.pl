@@ -18,7 +18,6 @@ get '/' => sub ($c) {
   my $my_bpm   = $c->param('my_bpm')   || 90;
   my $parts    = $c->param('parts')    || 'Amv-DMc-Emv-DMc'; # <Note><Major|minor><verse|chorus> phrases
   my $phrases  = $c->param('phrases')  || 1;
-  my $repeat   = $c->param('repeat')   || 1;
   my $hihat    = $c->param('hihat')    // 'closed'; # '' = none!
   my $do_drums = $c->param('do_drums') || 0;
   my $do_bass  = $c->param('do_bass')  || 0;
@@ -40,7 +39,6 @@ get '/' => sub ($c) {
       my_bpm   => $my_bpm,
       parts    => $parts,
       phrases  => $phrases,
-      repeat   => $repeat,
       hihat    => $hihat,
       do_drums => $do_drums,
       do_bass  => $do_bass,
@@ -60,7 +58,6 @@ get '/' => sub ($c) {
     my_bpm   => $my_bpm,
     parts    => $parts,
     phrases  => $phrases,
-    repeat   => $repeat,
     hihat    => $hihat,
     do_drums => $do_drums ? 1 : 0,
     do_bass  => $do_bass ? 1 : 0,
@@ -158,10 +155,10 @@ __DATA__
   <div class="form-group">
     <div class="row">
       <div class="col">
-        <label for="repeat">Repeat:</label>
+        <label for="phrases">Repeat:</label>
       </div>
       <div class="col">
-        <input type="number" class="form-control form-control-sm" id="repeat" name="repeat" min="1" max="64" value="<%= $repeat %>" title="1 to 64 repeats of the given parts phrase">
+        <input type="number" class="form-control form-control-sm" id="phrases" name="phrases" min="1" max="64" value="<%= $phrases %>" title="1 to 64 repeats of the given parts phrase">
       </div>
     </div>
   </div>
