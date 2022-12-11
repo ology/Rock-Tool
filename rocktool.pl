@@ -186,7 +186,7 @@ __DATA__
     </div>
     <div class="col">
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="do_drums" name="do_drums" <%= $do_drums ? 'checked' : '' %> title="Play a cheesy drum pattern">
+        <input class="form-check-input" type="checkbox" id="do_drums" name="do_drums" <%= $do_drums ? 'checked' : '' %> title="Play a 4/4 drum pattern">
         <label class="form-check-label" for="do_drums">Drums</label>
       </div>
     </div>
