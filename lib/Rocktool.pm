@@ -100,6 +100,7 @@ sub bass {
                 my $i = 0;
                 for my $chord (@chords) {
                     $chord =~ s/sus2/add9/;
+                    $chord =~ s/sus$/sus4/;
                     $chord =~ s/6sus4/sus4/;
 
                     my $m = $i % 2 == 0 ? $motif2 : $motif1;
@@ -160,6 +161,7 @@ sub chords {
         for my $j (1 .. $self->repeat) {
             for my $chord (@chords) {
                 $chord =~ s/sus2/add9/;
+                $chord =~ s/sus$/sus4/;
                 $chord =~ s/6sus4/sus4/;
                 my @notes = $cn->chord_with_octave($chord, $self->octave);
                 @notes = midi_format(@notes);
