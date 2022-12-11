@@ -20,8 +20,8 @@ get '/' => sub ($c) {
   my $phrases  = $c->param('phrases')  || 1;
   my $repeat   = $c->param('repeat')   || 1;
   my $hihat    = $c->param('hihat')    // 'closed'; # '' = none!
-  my $do_drums = $c->param('do_drums') // 1;
-  my $do_bass  = $c->param('do_bass')  // 1;
+  my $do_drums = $c->param('do_drums') || 0;
+  my $do_bass  = $c->param('do_bass')  || 0;
   my $reverb   = $c->param('reverb')   // 15;
 
   _purge($c); # purge defunct midi files
