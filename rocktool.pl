@@ -39,6 +39,7 @@ get '/' => sub ($c) {
       my_bpm   => $my_bpm,
       parts    => $parts,
       phrases  => $phrases,
+      repeat   => 1,
       hihat    => $hihat,
       do_drums => $do_drums,
       do_bass  => $do_bass,
