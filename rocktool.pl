@@ -167,7 +167,7 @@ __DATA__
   <div class="row">
     <div class="col">
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="do_bass" name="do_bass" <%= $do_bass ? 'checked' : '' %> title="Play a parallel bassline">
+        <input class="form-check-input" type="checkbox" id="do_bass" name="do_bass" <%= $do_bass ? 'checked' : '' %> title="Play a randomized bassline">
         <label class="form-check-label" for="do_bass">Bass</label>
       </div>
     </div>
