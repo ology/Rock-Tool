@@ -165,6 +165,7 @@ sub chords {
                 $chord =~ s/sus2/add9/;
                 $chord =~ s/sus$/sus4/;
                 $chord =~ s/6sus4/sus4/;
+
                 my @notes = $cn->chord_with_octave($chord, $self->octave);
                 @notes = midi_format(@notes);
                 push @accum, \@notes;
