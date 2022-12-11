@@ -1,0 +1,9 @@
+requires 'Data::Dataset::ChordProgressions';
+requires 'File::Find::Rule';
+requires 'MIDI::Bassline::Walk';
+requires 'MIDI::Drummer::Tiny';
+requires 'MIDI::Util';
+requires 'Mojolicious';
+requires 'Moo';
+requires 'Music::Duration::Partition';
+requires 'Time::HiRes';
