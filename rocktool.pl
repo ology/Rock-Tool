@@ -106,7 +106,7 @@ __DATA__
       </div>
       <div class="col">
         <input type="text" class="form-control form-control-sm" id="parts" name="parts" value="<%= $parts %>" title="Chord progression parts" aria-describedby="partsHelp">
-        <small id="partsHelp" class="form-text text-muted">Form: &ltNote>&lt;Major|minor>&lt;verse|chorus></small>
+        <small id="partsHelp" class="form-text text-muted">Form: &lt;Note>&lt;Major|minor>&lt;verse|chorus></small>
       </div>
     </div>
   </div>
