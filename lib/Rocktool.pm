@@ -99,6 +99,7 @@ sub bass {
                 my @chords = split /-/, $p;
                 my $i = 0;
                 for my $chord (@chords) {
+                    $chord =~ s/^(.+?)\/.+/$1/;
                     $chord =~ s/sus2/add9/;
                     $chord =~ s/sus$/sus4/;
                     $chord =~ s/6sus4/sus4/;
@@ -160,6 +161,7 @@ sub chords {
         # Add each chord to the score
         for my $j (1 .. $self->repeat) {
             for my $chord (@chords) {
+                $chord =~ s/^(.+?)\/.+/$1/;
                 $chord =~ s/sus2/add9/;
                 $chord =~ s/sus$/sus4/;
                 $chord =~ s/6sus4/sus4/;
