@@ -158,21 +158,10 @@ __DATA__
   <div class="form-group">
     <div class="row">
       <div class="col">
-        <label for="phrases">Bars:</label>
-      </div>
-      <div class="col">
-        <input type="number" class="form-control form-control-sm" id="phrases" name="phrases" min="1" max="64" value="<%= $phrases %>" title="1 to 64 bars of possibly unique chords">
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col">
         <label for="repeat">Repeat:</label>
       </div>
       <div class="col">
-        <input type="number" class="form-control form-control-sm" id="repeat" name="repeat" min="1" max="64" value="<%= $repeat %>" title="1 to 64 repeats of the defined bars">
+        <input type="number" class="form-control form-control-sm" id="repeat" name="repeat" min="1" max="64" value="<%= $repeat %>" title="1 to 64 repeats of the given parts phrase">
       </div>
     </div>
   </div>
