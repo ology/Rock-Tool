@@ -85,8 +85,7 @@ sub bass {
             pool    => [qw/ dhn hn qn en /],
             weights => [    1,  2, 3, 2   ],
         );
-        my $motif1 = $mdp->motif;
-        my $motif2 = $mdp->motif;
+        my @motifs = map { $mdp->motif } 1 .. 3;
 
         my $bassline = MIDI::Bassline::Walk->new(
             guitar  => 1,
@@ -104,7 +103,7 @@ sub bass {
                     $chord =~ s/sus$/sus4/;
                     $chord =~ s/6sus4/sus4/;
 
-                    my $m = $i % 2 == 0 ? $motif2 : $motif1;
+                    my $m = $motifs[ int rand @motifs ];
 
                     my $notes = $bassline->generate($chord, scalar(@$m));
 
