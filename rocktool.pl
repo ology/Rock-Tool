@@ -58,6 +58,7 @@ get '/' => sub ($c) {
     cpatch   => $cpatch,
     bpatch   => $bpatch,
     my_bpm   => $my_bpm,
+    parts    => $parts,
     phrases  => $phrases,
     repeat   => $repeat,
     hihat    => $hihat,
@@ -97,6 +98,18 @@ __DATA__
 <p></p>
 
 <form>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label for="parts">Parts:</label>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control form-control-sm" id="parts" name="parts" value="<%= $parts %>" title="Chord progression parts" aria-describedby="partsHelp">
+        <small id="partsHelp" class="form-text text-muted">Form: &ltAmv-DMc-Emv-DMc;Note>&lt;Major|minor>&lt;verse|chorus></small>
+      </div>
+    </div>
+  </div>
 
   <div class="form-group">
     <div class="row">
