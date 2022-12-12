@@ -112,7 +112,7 @@ __DATA__
         <label for="parts">Parts:</label>
       </div>
       <div class="col">
-        <input type="text" class="form-control form-control-sm" id="parts" name="parts" value="<%= $parts %>" title="Chord progression parts" aria-describedby="partsHelp">
+        <input type="text" class="form-control form-control-sm" id="parts" name="parts" value="<%= $parts %>" title="Dash-separated chord progression parts" aria-describedby="partsHelp">
         <small id="partsHelp" class="form-text text-muted">Form: &lt;Note>&lt;Major|minor>&lt;verse|chorus></small>
       </div>
     </div>
