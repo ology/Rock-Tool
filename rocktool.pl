@@ -21,6 +21,9 @@ get '/' => sub ($c) {
   my $hihat    = $c->param('hihat')    // 'closed'; # '' = none!
   my $do_drums = $c->param('do_drums') || 0;
   my $do_bass  = $c->param('do_bass')  || 0;
+  my $pool     = $c->param('pool')     || 'dhn hn qn en'; # MIDI-Perl note durations
+  my $weights  = $c->param('weights')  // '1 2 3 2'; # weights of the note duration pool
+  my $groups   = $c->param('groups')   || '1 1 1 2'; # groupings of the pool notes
   my $reverb   = $c->param('reverb')   // 15;
 
   _purge($c); # purge defunct midi files
@@ -43,6 +46,9 @@ get '/' => sub ($c) {
       hihat    => $hihat,
       do_drums => $do_drums,
       do_bass  => $do_bass,
+      my_pool    => $pool,
+      my_weights => $weights,
+      my_groups  => $groups,
       reverb   => $reverb,
     );
 
@@ -62,6 +68,9 @@ get '/' => sub ($c) {
     hihat    => $hihat,
     do_drums => $do_drums ? 1 : 0,
     do_bass  => $do_bass ? 1 : 0,
+    pool     => $pool,
+    weights  => $weights,
+    groups   => $groups,
     reverb   => $reverb,
   );
 } => 'index';
@@ -172,14 +181,68 @@ __DATA__
       </div>
     </div>
     <div class="col">
+      <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#bassSettings">Bass Settings</button>
+    </div>
+  </div>
+
+<div class="collapse" id="bassSettings">
+
+  <p></p>
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label for="pool">Pool:</label>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control form-control-sm" id="pool" name="pool" value="<%= $pool %>" title="Allowed bass durations" aria-describedby="poolHelp">
+        <small id="poolHelp" class="form-text text-muted">qn = quarter note, ten = triplet eighth, etc.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label for="weights">Weights:</label>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control form-control-sm" id="weights" name="weights" value="<%= $weights %>" title="Weights of bass durations" aria-describedby="weightsHelp">
+        <small id="weightsHelp" class="form-text text-muted">Weights of each pool duration</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label for="groups">Groups:</label>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control form-control-sm" id="groups" name="groups" value="<%= $groups %>" title="Groupings of bass durations" aria-describedby="groupsHelp">
+        <small id="groupsHelp" class="form-text text-muted">Groups of pool durations (e.g. ten = 3)</small>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p></p>
+
+  <div class="row">
+    <div class="col">
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="do_drums" name="do_drums" <%= $do_drums ? 'checked' : '' %> title="Play a 4/4 drum pattern">
         <label class="form-check-label" for="do_drums">Drums</label>
       </div>
     </div>
+    <div class="col">
+      <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#drumSettings">Drum Settings</button>
+    </div>
   </div>
-  <p></p>
 
+<div class="collapse" id="drumSettings">
+
+  <p></p>
   <div class="form-group">
     <div class="row">
       <div class="col">
@@ -206,6 +269,8 @@ __DATA__
       </div>
     </div>
   </div>
+
+</div>
 
   <input type="submit" class="btn btn-sm btn-primary" name="submit" value="Generate">
 
@@ -243,6 +308,8 @@ __DATA__
     <link href="/css/solid.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script type='text/javascript' src='//www.midijs.net/lib/midi.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
     <title><%= title %></title>
     <style>
       .padpage {
