@@ -135,7 +135,7 @@ __DATA__
         <label for="cpatch">Patch:</label>
       </div>
       <div class="col">
-        <input type="number" class="form-control form-control-sm" id="cpatch" name="cpatch" min="0" max="127" value="<%= $cpatch %>" title="0 to 127 defining the top chord patch">
+        <input type="number" class="form-control form-control-sm" id="cpatch" name="cpatch" min="0" max="127" value="<%= $cpatch %>" title="0 to 127 defining the chord patch">
       </div>
     </div>
   </div>
