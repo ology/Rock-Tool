@@ -26,6 +26,7 @@ has do_bass      => (is => 'ro');
 has my_pool      => (is => 'ro');
 has my_weights   => (is => 'ro');
 has my_groups    => (is => 'ro');
+has bass_motifs  => (is => 'ro');
 has progressions => (is => 'rw', default => sub { [] }); # bucket for named progressions
 has msgs         => (is => 'rw', default => sub { [] }); # bucket for output messages
 has named_parts  => (is => 'lazy'); # bucket for named parts
@@ -93,7 +94,7 @@ sub bass {
             weights => $weights,
             groups  => $groups,
         );
-        my @motifs = map { $mdp->motif } 1 .. 3;
+        my @motifs = map { $mdp->motif } 1 .. $self->bass_motifs;
 
         my $bassline = MIDI::Bassline::Walk->new(
             guitar  => 1,
