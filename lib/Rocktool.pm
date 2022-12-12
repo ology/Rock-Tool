@@ -88,7 +88,7 @@ sub bass {
         my $groups  = [ split /[\s,]+/, $self->my_groups ];
 
         my $mdp = Music::Duration::Partition->new(
-            size    => 4,
+            size    => $self->drummer->beats,
             pool    => $pool,
             weights => $weights,
             groups  => $groups,
