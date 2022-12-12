@@ -44,14 +44,14 @@ get '/' => sub ($c) {
       parts       => $parts,
       phrases     => $phrases,
       repeat      => 1,
-      hihat       => $hihat,
       do_drums    => $do_drums,
+      hihat       => $hihat,
+      reverb      => $reverb,
       do_bass     => $do_bass,
       my_pool     => $pool,
       my_weights  => $weights,
       my_groups   => $groups,
       bass_motifs => $motifs,
-      reverb      => $reverb,
     );
 
     $msgs = $rock->process;
