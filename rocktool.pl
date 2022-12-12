@@ -14,6 +14,7 @@ get '/' => sub ($c) {
   my $submit   = $c->param('submit')   || 0;
   my $octave   = $c->param('octave')   || 4;
   my $cpatch   = $c->param('cpatch')   || 4;
+  my $boctave  = $c->param('boctave')  || 1;
   my $bpatch   = $c->param('bpatch')   || 0;
   my $my_bpm   = $c->param('my_bpm')   || 90;
   my $parts    = $c->param('parts')    || 'Amv DMc Emv DMc'; # <Note><Major|minor><verse|chorus> phrases
@@ -39,6 +40,7 @@ get '/' => sub ($c) {
       filename    => 'public' . $filename,
       octave      => $octave,
       cpatch      => $cpatch,
+      boctave     => $boctave,
       bpatch      => $bpatch,
       my_bpm      => $my_bpm,
       parts       => $parts,
@@ -63,6 +65,7 @@ get '/' => sub ($c) {
     filename => $filename,
     octave   => $octave,
     cpatch   => $cpatch,
+    boctave  => $boctave,
     bpatch   => $bpatch,
     my_bpm   => $my_bpm,
     parts    => $parts,
@@ -188,6 +191,17 @@ __DATA__
       </div>
       <div class="col">
         <input type="number" class="form-control form-control-sm" id="bpatch" name="bpatch" min="0" max="127" value="<%= $bpatch %>" title="0 to 127 defining the bass patch">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label for="boctave">Octave:</label>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control form-control-sm" id="boctave" name="boctave" min="1" max="4" value="<%= $boctave %>" title="Bass octave from 1 to 4">
       </div>
     </div>
   </div>

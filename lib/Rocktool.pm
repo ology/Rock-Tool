@@ -14,6 +14,7 @@ use Music::Duration::Partition ();
 has filename     => (is => 'ro', required => 1); # MIDI file name
 has octave       => (is => 'ro');
 has cpatch       => (is => 'ro');
+has boctave      => (is => 'ro');
 has bpatch       => (is => 'ro');
 has my_bpm       => (is => 'ro');
 has parts        => (is => 'ro');
@@ -97,6 +98,7 @@ sub bass {
         my @motifs = map { $mdp->motif } 1 .. $self->bass_motifs;
 
         my $bassline = MIDI::Bassline::Walk->new(
+            octave  => $self->boctave,
             guitar  => 1,
             verbose => 0,
             scale   => sub { $_[0] =~ /^[A-G][#b]?m/ ? 'pminor' : 'pentatonic' },
