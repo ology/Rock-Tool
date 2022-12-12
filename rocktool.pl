@@ -35,21 +35,21 @@ get '/' => sub ($c) {
     $filename = '/' . time() . '.mid';
 
     my $rock = Rocktool->new(
-      filename => 'public' . $filename,
-      octave   => $octave,
-      cpatch   => $cpatch,
-      bpatch   => $bpatch,
-      my_bpm   => $my_bpm,
-      parts    => $parts,
-      phrases  => $phrases,
-      repeat   => 1,
-      hihat    => $hihat,
-      do_drums => $do_drums,
-      do_bass  => $do_bass,
+      filename   => 'public' . $filename,
+      octave     => $octave,
+      cpatch     => $cpatch,
+      bpatch     => $bpatch,
+      my_bpm     => $my_bpm,
+      parts      => $parts,
+      phrases    => $phrases,
+      repeat     => 1,
+      hihat      => $hihat,
+      do_drums   => $do_drums,
+      do_bass    => $do_bass,
       my_pool    => $pool,
       my_weights => $weights,
       my_groups  => $groups,
-      reverb   => $reverb,
+      reverb     => $reverb,
     );
 
     $msgs = $rock->process;
