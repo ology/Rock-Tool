@@ -24,6 +24,7 @@ get '/' => sub ($c) {
   my $pool     = $c->param('pool')     || 'dhn hn qn en'; # MIDI-Perl note durations
   my $weights  = $c->param('weights')  // '1 2 3 2'; # weights of the note duration pool
   my $groups   = $c->param('groups')   || '1 1 1 2'; # groupings of the pool notes
+  my $motifs   = $c->param('motifs')   || 3; # number of bass phrases to choose from
   my $reverb   = $c->param('reverb')   // 15;
 
   _purge($c); # purge defunct midi files
@@ -35,21 +36,22 @@ get '/' => sub ($c) {
     $filename = '/' . time() . '.mid';
 
     my $rock = Rocktool->new(
-      filename   => 'public' . $filename,
-      octave     => $octave,
-      cpatch     => $cpatch,
-      bpatch     => $bpatch,
-      my_bpm     => $my_bpm,
-      parts      => $parts,
-      phrases    => $phrases,
-      repeat     => 1,
-      hihat      => $hihat,
-      do_drums   => $do_drums,
-      do_bass    => $do_bass,
-      my_pool    => $pool,
-      my_weights => $weights,
-      my_groups  => $groups,
-      reverb     => $reverb,
+      filename    => 'public' . $filename,
+      octave      => $octave,
+      cpatch      => $cpatch,
+      bpatch      => $bpatch,
+      my_bpm      => $my_bpm,
+      parts       => $parts,
+      phrases     => $phrases,
+      repeat      => 1,
+      hihat       => $hihat,
+      do_drums    => $do_drums,
+      do_bass     => $do_bass,
+      my_pool     => $pool,
+      my_weights  => $weights,
+      my_groups   => $groups,
+      bass_motifs => $motifs,
+      reverb      => $reverb,
     );
 
     $msgs = $rock->process;
@@ -71,6 +73,7 @@ get '/' => sub ($c) {
     pool     => $pool,
     weights  => $weights,
     groups   => $groups,
+    motifs   => $motifs,
     reverb   => $reverb,
   );
 } => 'index';
@@ -185,6 +188,17 @@ __DATA__
       </div>
       <div class="col">
         <input type="number" class="form-control form-control-sm" id="bpatch" name="bpatch" min="0" max="127" value="<%= $bpatch %>" title="0 to 127 defining the bass patch">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label for="motifs">Motifs:</label>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control form-control-sm" id="motifs" name="motifs" min="1" max="16" value="<%= $motifs %>" title="1 to 16 bass motifs">
       </div>
     </div>
   </div>
