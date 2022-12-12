@@ -16,7 +16,7 @@ get '/' => sub ($c) {
   my $cpatch   = $c->param('cpatch')   || 4;
   my $bpatch   = $c->param('bpatch')   || 0;
   my $my_bpm   = $c->param('my_bpm')   || 90;
-  my $parts    = $c->param('parts')    || 'Amv-DMc-Emv-DMc'; # <Note><Major|minor><verse|chorus> phrases
+  my $parts    = $c->param('parts')    || 'Amv DMc Emv DMc'; # <Note><Major|minor><verse|chorus> phrases
   my $phrases  = $c->param('phrases')  || 1;
   my $hihat    = $c->param('hihat')    // 'closed'; # '' = none!
   my $do_drums = $c->param('do_drums') || 0;
@@ -112,7 +112,7 @@ __DATA__
         <label for="parts">Parts:</label>
       </div>
       <div class="col">
-        <input type="text" class="form-control form-control-sm" id="parts" name="parts" value="<%= $parts %>" title="Dash-separated chord progression parts" aria-describedby="partsHelp">
+        <input type="text" class="form-control form-control-sm" id="parts" name="parts" value="<%= $parts %>" title="Space-separated chord progression parts" aria-describedby="partsHelp">
         <small id="partsHelp" class="form-text text-muted">Form: &lt;Note>&lt;Major|minor>&lt;verse|chorus></small>
       </div>
     </div>
