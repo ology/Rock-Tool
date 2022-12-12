@@ -124,7 +124,7 @@ __DATA__
         <label for="octave">Octave:</label>
       </div>
       <div class="col">
-        <input type="number" class="form-control form-control-sm" id="octave" name="octave" min="3" max="6" value="<%= $octave %>" title="Octave from 3 to 6">
+        <input type="number" class="form-control form-control-sm" id="octave" name="octave" min="3" max="6" value="<%= $octave %>" title="Chord octave from 3 to 6">
       </div>
     </div>
   </div>
