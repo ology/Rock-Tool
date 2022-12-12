@@ -19,13 +19,13 @@ has my_bpm       => (is => 'ro');
 has parts        => (is => 'ro');
 has phrases      => (is => 'ro');
 has repeat       => (is => 'ro');
-has hihat        => (is => 'ro');
 has do_drums     => (is => 'ro');
+has hihat        => (is => 'ro');
+has reverb       => (is => 'ro');
 has do_bass      => (is => 'ro');
 has my_pool      => (is => 'ro');
 has my_weights   => (is => 'ro');
 has my_groups    => (is => 'ro');
-has reverb       => (is => 'ro');
 has progressions => (is => 'rw', default => sub { [] }); # bucket for named progressions
 has msgs         => (is => 'rw', default => sub { [] }); # bucket for output messages
 has named_parts  => (is => 'lazy'); # bucket for named parts
