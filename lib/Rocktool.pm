@@ -22,6 +22,9 @@ has repeat       => (is => 'ro');
 has hihat        => (is => 'ro');
 has do_drums     => (is => 'ro');
 has do_bass      => (is => 'ro');
+has my_pool      => (is => 'ro');
+has my_weights   => (is => 'ro');
+has my_groups    => (is => 'ro');
 has reverb       => (is => 'ro');
 has progressions => (is => 'rw', default => sub { [] }); # bucket for named progressions
 has msgs         => (is => 'rw', default => sub { [] }); # bucket for output messages
@@ -80,10 +83,15 @@ sub bass {
     if ($self->do_bass) {
         set_chan_patch($self->drummer->score, 1, $self->bpatch);
 
+        my $pool    = [ split /[\s,]+/, $self->my_pool ];
+        my $weights = [ split /[\s,]+/, $self->my_weights ];
+        my $groups  = [ split /[\s,]+/, $self->my_groups ];
+
         my $mdp = Music::Duration::Partition->new(
             size    => 4,
-            pool    => [qw/ dhn hn qn en /],
-            weights => [    1,  2, 3, 2   ],
+            pool    => $pool,
+            weights => $weights,
+            groups  => $groups,
         );
         my @motifs = map { $mdp->motif } 1 .. 3;
 
