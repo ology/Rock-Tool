@@ -13,9 +13,9 @@ use constant TIME_LIMIT => 60 * 60; # 1 hour
 get '/' => sub ($c) {
   my $submit   = $c->param('submit')   || 0;
   my $octave   = $c->param('octave')   || 4;
-  my $cpatch   = $c->param('cpatch')   || 4;
+  my $cpatch   = $c->param('cpatch')   || 4; # 0 - 127
   my $boctave  = $c->param('boctave')  || 1;
-  my $bpatch   = $c->param('bpatch')   || 0;
+  my $bpatch   = $c->param('bpatch')   || 0; # 0 - 127
   my $my_bpm   = $c->param('my_bpm')   || 90;
   my $parts    = $c->param('parts')    || 'Amv DMc Emv DMc'; # <Note><Major|minor><verse|chorus> phrases
   my $phrases  = $c->param('phrases')  || 1;
@@ -26,7 +26,7 @@ get '/' => sub ($c) {
   my $weights  = $c->param('weights')  // '1 2 3 2'; # weights of the note duration pool
   my $groups   = $c->param('groups')   || '1 1 1 2'; # groupings of the pool notes
   my $motifs   = $c->param('motifs')   || 3; # number of bass phrases to choose from
-  my $reverb   = $c->param('reverb')   // 15;
+  my $reverb   = $c->param('reverb')   // 15; # 0 - 127
 
   _purge($c); # purge defunct midi files
 
