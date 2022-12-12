@@ -170,7 +170,7 @@ __DATA__
       </div>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#bassSettings">Bass Settings</button>
+      <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="collapse" data-target="#bassSettings">Bass Settings</button>
     </div>
   </div>
 
@@ -237,7 +237,7 @@ __DATA__
       </div>
     </div>
     <div class="col">
-      <button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#drumSettings">Drum Settings</button>
+      <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="collapse" data-target="#drumSettings">Drum Settings</button>
     </div>
   </div>
 
