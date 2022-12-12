@@ -132,21 +132,10 @@ __DATA__
   <div class="form-group">
     <div class="row">
       <div class="col">
-        <label for="cpatch">Top patch:</label>
+        <label for="cpatch">Patch:</label>
       </div>
       <div class="col">
         <input type="number" class="form-control form-control-sm" id="cpatch" name="cpatch" min="0" max="127" value="<%= $cpatch %>" title="0 to 127 defining the top chord patch">
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col">
-        <label for="bpatch">Bass patch:</label>
-      </div>
-      <div class="col">
-        <input type="number" class="form-control form-control-sm" id="bpatch" name="bpatch" min="0" max="127" value="<%= $bpatch %>" title="0 to 127 defining the bass patch">
       </div>
     </div>
   </div>
@@ -188,6 +177,18 @@ __DATA__
 <div class="collapse" id="bassSettings">
 
   <p></p>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label for="bpatch">Patch:</label>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control form-control-sm" id="bpatch" name="bpatch" min="0" max="127" value="<%= $bpatch %>" title="0 to 127 defining the bass patch">
+      </div>
+    </div>
+  </div>
+
   <div class="form-group">
     <div class="row">
       <div class="col">
