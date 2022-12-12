@@ -81,6 +81,12 @@ get '/' => sub ($c) {
   );
 } => 'index';
 
+get '/help' => sub ($c) {
+  $c->render(
+    template => 'help',
+  );
+} => 'help';
+
 app->log->level('info');
 
 app->start;
@@ -329,6 +335,17 @@ __DATA__
   </div>
 </div>
 
+@@ help.html.ep
+% layout 'default';
+% title 'Help!';
+
+<p>Many settings are self explanatory, but the <b>bass</b> deserves a bit of attention.</p>
+<p>The <b>octave</b> is most naturally either <b>1</b> or <b>2</b>. Different patches sound ok at the lowest octave. Some sound better the next one up.</p>
+<p><b>Motifs</b> are the number of bass phrases or "figures." These are chosen at random during the progression. The more there are, the more random the bassline is, given the number of parts and phrases.</p>
+<p>The <b>pool</b> is the set of note durations that can happen. These are in "MIDI-Perl" format, where "hn" is a half-note, and "ten" is a triplet eighth-note, etc.</p>
+<p><b>Weights</b> are the probabilities that the corresponding pool entries will be chosen.</p>
+<p><b>Groups</b> are the indications for how many times to try to repeat a corresponding duration in succession.</p>
+
 @@ layouts/default.html.ep
 <!DOCTYPE html>
 <html lang="en">
@@ -362,6 +379,7 @@ __DATA__
         Built by <a href="http://gene.ology.net/">Gene</a>
         with <a href="https://www.perl.org/">Perl</a> and
         <a href="https://mojolicious.org/">Mojolicious</a>
+        | <a href="/help">Help!</a>
       </div>
     </div>
   </body>
