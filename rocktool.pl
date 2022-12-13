@@ -19,14 +19,14 @@ get '/' => sub ($c) {
   my $my_bpm   = $c->param('my_bpm')   || 90;
   my $parts    = $c->param('parts')    || 'Amv DMc Emv DMc'; # <Note><Major|minor><verse|chorus> phrases
   my $phrases  = $c->param('phrases')  || 1;
-  my $hihat    = $c->param('hihat')    // 'closed'; # '' = none!
   my $do_drums = $c->param('do_drums') || 0;
+  my $hihat    = $c->param('hihat')    // 'closed'; # '' = none!
+  my $reverb   = $c->param('reverb')   // 15; # 0 - 127
   my $do_bass  = $c->param('do_bass')  || 0;
   my $pool     = $c->param('pool')     || 'dhn hn qn en'; # MIDI-Perl note durations
   my $weights  = $c->param('weights')  // '1 2 3 2'; # weights of the note duration pool
   my $groups   = $c->param('groups')   // '1 1 1 2'; # groupings of the pool notes
   my $motifs   = $c->param('motifs')   || 3; # number of bass phrases to choose from
-  my $reverb   = $c->param('reverb')   // 15; # 0 - 127
 
   _purge($c); # purge defunct midi files
 
