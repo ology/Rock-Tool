@@ -38,7 +38,7 @@ get '/' => sub ($c) {
 
     my $rock = Rocktool->new(
       filename    => 'public' . $filename,
-      octave      => $coctave,
+      coctave     => $coctave,
       cpatch      => $cpatch,
       boctave     => $boctave,
       bpatch      => $bpatch,

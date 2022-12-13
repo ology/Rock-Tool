@@ -12,7 +12,7 @@ use MIDI::Util qw(set_chan_patch midi_format);
 use Music::Duration::Partition ();
 
 has filename     => (is => 'ro', required => 1); # MIDI file name
-has octave       => (is => 'ro');
+has coctave      => (is => 'ro');
 has cpatch       => (is => 'ro');
 has boctave      => (is => 'ro');
 has bpatch       => (is => 'ro');
@@ -176,7 +176,7 @@ sub chords {
                 $chord =~ s/sus$/sus4/;
                 $chord =~ s/6sus4/sus4/;
 
-                my @notes = $cn->chord_with_octave($chord, $self->octave);
+                my @notes = $cn->chord_with_octave($chord, $self->coctave);
                 @notes = midi_format(@notes);
                 push @accum, \@notes;
             }
