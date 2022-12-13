@@ -70,14 +70,14 @@ get '/' => sub ($c) {
     my_bpm   => $my_bpm,
     parts    => $parts,
     phrases  => $phrases,
-    hihat    => $hihat,
     do_drums => $do_drums ? 1 : 0,
+    hihat    => $hihat,
+    reverb   => $reverb,
     do_bass  => $do_bass ? 1 : 0,
     pool     => $pool,
     weights  => $weights,
     groups   => $groups,
     motifs   => $motifs,
-    reverb   => $reverb,
   );
 } => 'index';
 
