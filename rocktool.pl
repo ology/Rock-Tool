@@ -12,7 +12,7 @@ use constant TIME_LIMIT => 60 * 60; # 1 hour
 
 get '/' => sub ($c) {
   my $submit   = $c->param('submit')   || 0;
-  my $octave   = $c->param('octave')   || 4;
+  my $coctave  = $c->param('coctave')  || 4;
   my $cpatch   = $c->param('cpatch')   || 4; # 0 - 127
   my $boctave  = $c->param('boctave')  || 1;
   my $bpatch   = $c->param('bpatch')   || 0; # 0 - 127
@@ -38,7 +38,7 @@ get '/' => sub ($c) {
 
     my $rock = Rocktool->new(
       filename    => 'public' . $filename,
-      octave      => $octave,
+      octave      => $coctave,
       cpatch      => $cpatch,
       boctave     => $boctave,
       bpatch      => $bpatch,
@@ -63,7 +63,7 @@ get '/' => sub ($c) {
     template => 'index',
     msgs     => $msgs,
     filename => $filename,
-    octave   => $octave,
+    coctave  => $coctave,
     cpatch   => $cpatch,
     boctave  => $boctave,
     bpatch   => $bpatch,
@@ -133,10 +133,10 @@ __DATA__
   <div class="form-group">
     <div class="row">
       <div class="col">
-        <label for="octave">Octave:</label>
+        <label for="coctave">Octave:</label>
       </div>
       <div class="col">
-        <input type="number" class="form-control form-control-sm" id="octave" name="octave" min="3" max="6" value="<%= $octave %>" title="Chord octave from 3 to 6">
+        <input type="number" class="form-control form-control-sm" id="coctave" name="coctave" min="3" max="6" value="<%= $coctave %>" title="Chord octave from 3 to 6">
       </div>
     </div>
   </div>
