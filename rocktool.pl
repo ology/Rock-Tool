@@ -20,7 +20,7 @@ get '/' => sub ($c) {
   my $bvolume  = $c->param('bvolume')  // 80; # 0 - 127
   my $my_bpm   = $c->param('my_bpm')   || 90;
   my $parts    = $c->param('parts')    || 'Amv DMc Emv DMc'; # <Note><Major|minor><verse|chorus> phrases
-  my $phrases  = $c->param('phrases')  || 1;
+  my $phrases  = $c->param('phrases')  || 1; # number of times to repeat the parts
   my $do_drums = $c->param('do_drums') || 0;
   my $dvolume  = $c->param('dvolume')  || 60; # 0 - 127
   my $hihat    = $c->param('hihat')    // 'closed'; # '' = none!
