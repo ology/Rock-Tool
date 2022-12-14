@@ -142,17 +142,6 @@ __DATA__
   <div class="form-group">
     <div class="row">
       <div class="col">
-        <label for="coctave">Octave:</label>
-      </div>
-      <div class="col">
-        <input type="number" class="form-control form-control-sm" id="coctave" name="coctave" min="3" max="6" value="<%= $coctave %>" title="Chord octave from 3 to 6">
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col">
         <label for="cpatch">Patch:</label>
       </div>
       <div class="col">
@@ -168,6 +157,17 @@ __DATA__
       </div>
       <div class="col">
         <input type="number" class="form-control form-control-sm" id="cvolume" name="cvolume" min="0" max="127" value="<%= $cvolume %>" title="0 to 127 defining the chord volume">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label for="coctave">Octave:</label>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control form-control-sm" id="coctave" name="coctave" min="3" max="6" value="<%= $coctave %>" title="Chord octave from 3 to 6">
       </div>
     </div>
   </div>
