@@ -73,15 +73,15 @@ sub drums {
 
     return unless $self->dvolume;
 
-    my $repeats = $self->drummer->bars * $self->repeat;
+    my $bars = $self->drummer->bars * $self->repeat;
 
     if ($self->do_drums) {
-        $self->drummer->metronome44($repeats, 1);
+        $self->drummer->metronome44($bars, 1);
     }
     elsif ($self->hihat) {
         my $patch = $self->hihat . '_hh';
         $self->drummer->count_in({
-            bars  => $repeats,
+            bars  => $bars,
             patch => $self->drummer->$patch(),
         });
     }
