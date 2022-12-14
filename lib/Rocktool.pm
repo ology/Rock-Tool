@@ -23,6 +23,7 @@ has parts        => (is => 'ro');
 has phrases      => (is => 'ro');
 has repeat       => (is => 'ro');
 has do_drums     => (is => 'ro');
+has dvolume      => (is => 'ro');
 has hihat        => (is => 'ro');
 has reverb       => (is => 'ro');
 has do_bass      => (is => 'ro');
@@ -48,6 +49,7 @@ sub _build_drummer {
         bars   => 4 * $self->named_parts->@* * $self->phrases,
         bpm    => $self->my_bpm,
         reverb => $self->reverb,
+        volume => $self->dvolume,
     );
     return $d;
 }

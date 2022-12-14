@@ -22,6 +22,7 @@ get '/' => sub ($c) {
   my $parts    = $c->param('parts')    || 'Amv DMc Emv DMc'; # <Note><Major|minor><verse|chorus> phrases
   my $phrases  = $c->param('phrases')  || 1;
   my $do_drums = $c->param('do_drums') || 0;
+  my $dvolume  = $c->param('dvolume')  || 100; # 0 - 127
   my $hihat    = $c->param('hihat')    // 'closed'; # '' = none!
   my $reverb   = $c->param('reverb')   // 15; # 0 - 127
   my $do_bass  = $c->param('do_bass')  || 0;
@@ -51,6 +52,7 @@ get '/' => sub ($c) {
       phrases     => $phrases,
       repeat      => 1,
       do_drums    => $do_drums,
+      dvolume     => $dvolume,
       hihat       => $hihat,
       reverb      => $reverb,
       do_bass     => $do_bass,
@@ -77,6 +79,7 @@ get '/' => sub ($c) {
     parts    => $parts,
     phrases  => $phrases,
     do_drums => $do_drums ? 1 : 0,
+    dvolume  => $dvolume,
     hihat    => $hihat,
     reverb   => $reverb,
     do_bass  => $do_bass ? 1 : 0,
@@ -304,6 +307,17 @@ __DATA__
   </div>
 
 <div class="collapse" id="drumSettings">
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label for="dvolume">Volume:</label>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control form-control-sm" id="dvolume" name="dvolume" min="0" max="127" value="<%= $dvolume %>" title="0 to 127 defining the drums volume">
+      </div>
+    </div>
+  </div>
 
   <p></p>
   <div class="form-group">
