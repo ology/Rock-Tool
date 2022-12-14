@@ -38,7 +38,7 @@ has drummer      => (is => 'lazy');
 
 sub _build_named_parts {
     my ($self) = @_;
-    my @parts = split /\s+/, $self->parts;
+    my @parts = split /[\s,]+/, $self->parts;
     return \@parts;
 }
 
