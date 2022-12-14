@@ -177,7 +177,9 @@ sub chords {
         # Keep track of the progressions used
         push @progressions, $named;
 
-        push @msgs, "$note $scale:<br>$named<br>$progression->[1]";
+        (my $shown = $named) =~ s/-/ - /g;
+        (my $prog = $progression->[1]) =~ s/-/ - /g;
+        push @msgs, "$note $scale:<br>$shown<br>$prog";
 
         my @chords = split /-/, $named;
         # Add each chord to the score
