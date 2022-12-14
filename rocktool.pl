@@ -308,6 +308,8 @@ __DATA__
 
 <div class="collapse" id="drumSettings">
 
+  <p></p>
+
   <div class="form-group">
     <div class="row">
       <div class="col">
@@ -319,7 +321,6 @@ __DATA__
     </div>
   </div>
 
-  <p></p>
   <div class="form-group">
     <div class="row">
       <div class="col">
