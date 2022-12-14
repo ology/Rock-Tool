@@ -71,6 +71,8 @@ sub process {
 sub drums {
     my ($self) = @_;
 
+    return unless $self->dvolume;
+
     if ($self->do_drums) {
         $self->drummer->metronome44($self->drummer->bars * $self->repeat, 1);
     }
