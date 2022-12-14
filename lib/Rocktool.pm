@@ -196,10 +196,12 @@ sub chords {
     # Set the progressions for use by the bassline
     $self->progressions(\@progressions);
 
-    # Add the chords to the score
-    for my $j (1 .. $self->phrases) {
-#        print join(', ', map { "[@$_]" } @accum), "\n";
-        $self->drummer->note($self->drummer->whole, @$_) for @accum;
+    if ($self->cvolume) {
+        # Add the chords to the score
+        for my $j (1 .. $self->phrases) {
+            #print join(', ', map { "[@$_]" } @accum), "\n";
+            $self->drummer->note($self->drummer->whole, @$_) for @accum;
+        }
     }
 }
 
