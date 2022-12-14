@@ -22,7 +22,7 @@ get '/' => sub ($c) {
   my $parts    = $c->param('parts')    || 'Amv DMc Emv DMc'; # <Note><Major|minor><verse|chorus> phrases
   my $phrases  = $c->param('phrases')  || 1;
   my $do_drums = $c->param('do_drums') || 0;
-  my $dvolume  = $c->param('dvolume')  || 100; # 0 - 127
+  my $dvolume  = $c->param('dvolume')  || 60; # 0 - 127
   my $hihat    = $c->param('hihat')    // 'closed'; # '' = none!
   my $reverb   = $c->param('reverb')   // 15; # 0 - 127
   my $do_bass  = $c->param('do_bass')  || 0;
