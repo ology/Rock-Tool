@@ -93,7 +93,7 @@ sub bass {
             size => $self->drummer->beats,
             pool => $pool,
             $self->my_weights ? (weights => $weights) : (),
-            $self->my_groups  ? (groups  => $groups)  : (),
+            $self->my_groups ? (groups => $groups) : (),
         );
         my @motifs = map { $mdp->motif } 1 .. $self->bass_motifs;
 
