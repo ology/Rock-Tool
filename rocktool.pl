@@ -14,8 +14,10 @@ get '/' => sub ($c) {
   my $submit   = $c->param('submit')   || 0;
   my $coctave  = $c->param('coctave')  || 4;
   my $cpatch   = $c->param('cpatch')   || 4; # 0 - 127
+  my $cvolume  = $c->param('cvolume')  || 100; # 0 - 127
   my $boctave  = $c->param('boctave')  || 1;
   my $bpatch   = $c->param('bpatch')   || 0; # 0 - 127
+  my $bvolume  = $c->param('bvolume')  || 100; # 0 - 127
   my $my_bpm   = $c->param('my_bpm')   || 90;
   my $parts    = $c->param('parts')    || 'Amv DMc Emv DMc'; # <Note><Major|minor><verse|chorus> phrases
   my $phrases  = $c->param('phrases')  || 1;
@@ -40,8 +42,10 @@ get '/' => sub ($c) {
       filename    => 'public' . $filename,
       coctave     => $coctave,
       cpatch      => $cpatch,
+      cvolume     => $cvolume,
       boctave     => $boctave,
       bpatch      => $bpatch,
+      bvolume     => $bvolume,
       my_bpm      => $my_bpm,
       parts       => $parts,
       phrases     => $phrases,
@@ -65,8 +69,10 @@ get '/' => sub ($c) {
     filename => $filename,
     coctave  => $coctave,
     cpatch   => $cpatch,
+    cvolume  => $cvolume,
     boctave  => $boctave,
     bpatch   => $bpatch,
+    bvolume  => $bvolume,
     my_bpm   => $my_bpm,
     parts    => $parts,
     phrases  => $phrases,
@@ -155,6 +161,17 @@ __DATA__
   <div class="form-group">
     <div class="row">
       <div class="col">
+        <label for="cvolume">Volume:</label>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control form-control-sm" id="cvolume" name="cvolume" min="0" max="127" value="<%= $cvolume %>" title="0 to 127 defining the chord volume">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
         <label for="my_bpm">BPM:</label>
       </div>
       <div class="col">
@@ -197,6 +214,17 @@ __DATA__
       </div>
       <div class="col">
         <input type="number" class="form-control form-control-sm" id="bpatch" name="bpatch" min="0" max="127" value="<%= $bpatch %>" title="0 to 127 defining the bass patch">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label for="bvolume">Volume:</label>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control form-control-sm" id="bvolume" name="bvolume" min="0" max="127" value="<%= $bvolume %>" title="0 to 127 defining the bass volume">
       </div>
     </div>
   </div>

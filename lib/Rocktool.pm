@@ -14,8 +14,10 @@ use Music::Duration::Partition ();
 has filename     => (is => 'ro', required => 1); # MIDI file name
 has coctave      => (is => 'ro');
 has cpatch       => (is => 'ro');
+has cvolume      => (is => 'ro');
 has boctave      => (is => 'ro');
 has bpatch       => (is => 'ro');
+has bvolume      => (is => 'ro');
 has my_bpm       => (is => 'ro');
 has parts        => (is => 'ro');
 has phrases      => (is => 'ro');
@@ -85,6 +87,8 @@ sub bass {
     if ($self->do_bass) {
         set_chan_patch($self->drummer->score, 1, $self->bpatch);
 
+        $self->drummer->score->Volume($self->bvolume);
+
         my $pool    = [ split /[\s,]+/, $self->my_pool ];
         my $weights = [ split /[\s,]+/, $self->my_weights ];
         my $groups  = [ split /[\s,]+/, $self->my_groups ];
@@ -133,6 +137,8 @@ sub chords {
     my ($self) = @_;
 
     set_chan_patch($self->drummer->score, 0, $self->cpatch);
+
+    $self->drummer->score->Volume($self->cvolume);
 
     my $cn = Music::Chord::Note->new;
 
