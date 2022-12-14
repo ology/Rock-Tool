@@ -38,7 +38,7 @@ has drummer      => (is => 'lazy');
 
 sub _build_named_parts {
     my ($self) = @_;
-    my @parts = split /[\s,]+/, $self->parts;
+    my @parts = split /[\s,-]+/, $self->parts;
     return \@parts;
 }
 
@@ -96,9 +96,9 @@ sub bass {
 
     $self->drummer->score->Volume($self->bvolume);
 
-    my $pool    = [ split /[\s,]+/, $self->my_pool ];
-    my $weights = [ split /[\s,]+/, $self->my_weights ];
-    my $groups  = [ split /[\s,]+/, $self->my_groups ];
+    my $pool    = [ split /[\s,-]+/, $self->my_pool ];
+    my $weights = [ split /[\s,-]+/, $self->my_weights ];
+    my $groups  = [ split /[\s,-]+/, $self->my_groups ];
 
     my $mdp = Music::Duration::Partition->new(
         size => $self->drummer->beats,
