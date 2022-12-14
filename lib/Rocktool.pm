@@ -86,50 +86,50 @@ sub drums {
 sub bass {
     my ($self) = @_;
 
-    if ($self->do_bass) {
-        set_chan_patch($self->drummer->score, 1, $self->bpatch);
+    return unless $self->do_bass;
 
-        $self->drummer->score->Volume($self->bvolume);
+    set_chan_patch($self->drummer->score, 1, $self->bpatch);
 
-        my $pool    = [ split /[\s,]+/, $self->my_pool ];
-        my $weights = [ split /[\s,]+/, $self->my_weights ];
-        my $groups  = [ split /[\s,]+/, $self->my_groups ];
+    $self->drummer->score->Volume($self->bvolume);
 
-        my $mdp = Music::Duration::Partition->new(
-            size => $self->drummer->beats,
-            pool => $pool,
-            $self->my_weights ? (weights => $weights) : (),
-            $self->my_groups ? (groups => $groups) : (),
-        );
-        my @motifs = map { $mdp->motif } 1 .. $self->bass_motifs;
+    my $pool    = [ split /[\s,]+/, $self->my_pool ];
+    my $weights = [ split /[\s,]+/, $self->my_weights ];
+    my $groups  = [ split /[\s,]+/, $self->my_groups ];
 
-        my $bassline = MIDI::Bassline::Walk->new(
-            octave  => $self->boctave,
-            guitar  => 1,
-            verbose => 0,
-            scale   => sub { $_[0] =~ /^[A-G][#b]?m/ ? 'pminor' : 'pentatonic' },
-        );
+    my $mdp = Music::Duration::Partition->new(
+        size => $self->drummer->beats,
+        pool => $pool,
+        $self->my_weights ? (weights => $weights) : (),
+        $self->my_groups ? (groups => $groups) : (),
+    );
+    my @motifs = map { $mdp->motif } 1 .. $self->bass_motifs;
 
-        for (1 .. $self->repeat * $self->phrases) {
-            for my $p ($self->progressions->@*) {
-                my @chords = split /-/, $p;
-                my $i = 0;
-                for my $chord (@chords) {
-                    $chord =~ s/^(.+?)\/.+/$1/;
-                    $chord =~ s/sus2/add9/;
-                    $chord =~ s/sus$/sus4/;
-                    $chord =~ s/6sus4/sus4/;
+    my $bassline = MIDI::Bassline::Walk->new(
+        octave  => $self->boctave,
+        guitar  => 1,
+        verbose => 0,
+        scale   => sub { $_[0] =~ /^[A-G][#b]?m/ ? 'pminor' : 'pentatonic' },
+    );
 
-                    my $m = $motifs[ int rand @motifs ];
+    for (1 .. $self->repeat * $self->phrases) {
+        for my $p ($self->progressions->@*) {
+            my @chords = split /-/, $p;
+            my $i = 0;
+            for my $chord (@chords) {
+                $chord =~ s/^(.+?)\/.+/$1/;
+                $chord =~ s/sus2/add9/;
+                $chord =~ s/sus$/sus4/;
+                $chord =~ s/6sus4/sus4/;
 
-                    my $notes = $bassline->generate($chord, scalar(@$m));
+                my $m = $motifs[ int rand @motifs ];
 
-                    for my $j (0 .. $#$m) {
-                        $self->drummer->note($m->[$j], $notes->[$j]);
-                    }
+                my $notes = $bassline->generate($chord, scalar(@$m));
 
-                    $i++;
+                for my $j (0 .. $#$m) {
+                    $self->drummer->note($m->[$j], $notes->[$j]);
                 }
+
+                $i++;
             }
         }
     }
