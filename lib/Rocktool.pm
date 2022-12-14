@@ -120,10 +120,7 @@ sub bass {
             my @chords = split /-/, $p;
             my $i = 0;
             for my $chord (@chords) {
-                $chord =~ s/^(.+?)\/.+/$1/;
-                $chord =~ s/sus2/add9/;
-                $chord =~ s/sus$/sus4/;
-                $chord =~ s/6sus4/sus4/;
+                $chord = _fix_chord_flavor($chord);
 
                 my $m = $motifs[ int rand @motifs ];
 
@@ -185,10 +182,7 @@ sub chords {
         # Add each chord to the score
         for my $j (1 .. $self->repeat) {
             for my $chord (@chords) {
-                $chord =~ s/^(.+?)\/.+/$1/;
-                $chord =~ s/sus2/add9/;
-                $chord =~ s/sus$/sus4/;
-                $chord =~ s/6sus4/sus4/;
+                $chord = _fix_chord_flavor($chord);
 
                 my @notes = $cn->chord_with_octave($chord, $self->coctave);
                 @notes = midi_format(@notes);
@@ -209,6 +203,15 @@ sub chords {
             $self->drummer->note($self->drummer->whole, @$_) for @accum;
         }
     }
+}
+
+sub _fix_chord_flavor {
+    my ($chord) = @_;
+    $chord =~ s/^(.+?)\/.+/$1/;
+    $chord =~ s/sus2/add9/;
+    $chord =~ s/sus$/sus4/;
+    $chord =~ s/6sus4/sus4/;
+    return $chord;
 }
 
 1;
