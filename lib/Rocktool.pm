@@ -208,10 +208,12 @@ sub chords {
 # handle unknown chords
 sub _fix_chord_flavor {
     my ($chord) = @_;
+
     $chord =~ s/^(.+?)\/.+/$1/;
     $chord =~ s/sus$/sus4/;
     $chord =~ s/sus2/add9/;
     $chord =~ s/6sus4/6/;
+
     return $chord;
 }
 
