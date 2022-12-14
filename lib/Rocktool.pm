@@ -86,7 +86,7 @@ sub drums {
 sub bass {
     my ($self) = @_;
 
-    return unless $self->do_bass;
+    return unless $self->do_bass && $self->bvolume;
 
     set_chan_patch($self->drummer->score, 1, $self->bpatch);
 
