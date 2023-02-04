@@ -5,7 +5,7 @@ use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Data-Dataset-ChordProgressions MI
 use Moo;
 use Music::Chord::Note ();
 use Music::Scales qw(get_scale_notes);
-use Data::Dataset::ChordProgressions ();
+use Data::Dataset::ChordProgressions qw(as_hash transpose);
 use MIDI::Bassline::Walk ();
 use MIDI::Drummer::Tiny ();
 use MIDI::Util qw(set_chan_patch midi_format);
@@ -145,7 +145,7 @@ sub chords {
 
     my $cn = Music::Chord::Note->new;
 
-    my %data = Data::Dataset::ChordProgressions::as_hash();
+    my %data = as_hash();
 
     my @msgs; # Message accumulator
     my @accum; # Note accumulator
@@ -161,15 +161,11 @@ sub chords {
             $pool    = $data{rock}{$scale}{$section};
         }
 
-        # Set the transposition map
-        my %note_map;
-        @note_map{ get_scale_notes('C', $scale) } = get_scale_notes($note, $scale);
-
         # Get a random progression
         my $progression = $pool->[int rand @$pool];
 
         # Transpose the progression chords from C
-        (my $named = $progression->[0]) =~ s/([A-G][#b]?)/$note_map{$1}/g;
+        my $named = transpose($note, $scale, $progression->[0]);
 
         # Keep track of the progressions used
         push @progressions, $named;
