@@ -75,6 +75,8 @@ sub drums {
 
     my $bars = $self->drummer->bars * $self->repeat;
 
+    $self->drummer->count_in(1);
+
     if ($self->do_drums) {
         $self->drummer->metronome44($bars, 1);
     }
@@ -115,6 +117,8 @@ sub bass {
         scale   => sub { $_[0] =~ /^[A-G][#b]?m/ ? 'pminor' : 'pentatonic' },
     );
 
+    $self->drummer->rest($self->drummer->whole);
+
     for (1 .. $self->repeat * $self->phrases) {
         for my $p ($self->progressions->@*) {
             my @chords = split /-/, $p;
@@ -150,6 +154,8 @@ sub chords {
     my @msgs; # Message accumulator
     my @accum; # Note accumulator
     my @progressions; # Named progression accumulator
+
+    $self->drummer->rest($self->drummer->whole);
 
     for my $part ($self->named_parts->@*) {
         my ($note, $section, $scale, $pool);
