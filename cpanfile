@@ -1,6 +1,6 @@
 requires 'Data::Dataset::ChordProgressions';
 requires 'File::Find::Rule';
-requires 'MIDI::Bassline::Walk';
+requires 'Music::Bassline::Generator';
 requires 'MIDI::Drummer::Tiny';
 requires 'MIDI::Util';
 requires 'Mojolicious';
