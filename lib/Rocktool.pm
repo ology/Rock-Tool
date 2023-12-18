@@ -6,7 +6,7 @@ use Moo;
 use Music::Chord::Note ();
 use Music::Scales qw(get_scale_notes);
 use Data::Dataset::ChordProgressions qw(as_hash transpose);
-use MIDI::Bassline::Walk ();
+use Music::Bassline::Generator ();
 use MIDI::Drummer::Tiny ();
 use MIDI::Util qw(set_chan_patch midi_format);
 use Music::Duration::Partition ();
@@ -110,7 +110,7 @@ sub bass {
     );
     my @motifs = map { $mdp->motif } 1 .. $self->bass_motifs;
 
-    my $bassline = MIDI::Bassline::Walk->new(
+    my $bassline = Music::Bassline::Generator->new(
         octave  => $self->boctave,
         guitar  => 1,
         verbose => 0,
