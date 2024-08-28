@@ -1,6 +1,5 @@
 package Rocktool;
 
-use if $ENV{USER} eq "gene", lib => map { "$ENV{HOME}/sandbox/$_/lib" } qw(Data-Dataset-ChordProgressions Music-Bassline-Generator MIDI-Util MIDI-Drummer-Tiny Music-Duration Music-Duration-Partition);
 
 use Moo;
 use Music::Chord::Note ();
