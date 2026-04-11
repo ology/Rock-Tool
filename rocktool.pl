@@ -131,10 +131,11 @@ __DATA__
     <div class="row">
       <div class="col">
         <label for="parts">Parts:</label>
+        <small class="form-text text-muted">Space-separated list</small>
       </div>
       <div class="col">
         <input type="text" class="form-control form-control-sm" id="parts" name="parts" value="<%= $parts %>" title="Space-separated chord progression parts" aria-describedby="partsHelp">
-        <small id="partsHelp" class="form-text text-muted">Form: &lt;Note>&lt;Major|minor>&lt;verse|chorus></small>
+        <small id="partsHelp" class="form-text text-muted">&lt;Note>&lt;Major|minor>&lt;verse|chorus></small>
       </div>
     </div>
   </div>
