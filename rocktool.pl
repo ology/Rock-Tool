@@ -362,8 +362,7 @@ __DATA__
 
 % if ($filename) {
     <p></p>
-    MIDI: &nbsp;
-    <a href="#" onClick="MIDIjs.play('<%= $filename %>');" title="Play MIDI"><i class="fa-solid fa-play"></i></a>
+    <span class="controls"><a href="#" onClick="MIDIjs.play('<%= $filename %>');" title="Play MIDI"><i class="fa-solid fa-play"></i></a></span>
     &nbsp; | &nbsp;
     <a href="#" onClick="MIDIjs.stop();" title="Stop MIDI"><i class="fa-solid fa-stop"></i></a>
     &nbsp; | &nbsp;
@@ -403,6 +402,7 @@ __DATA__
     <script src='//www.midijs.net/lib/midi.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <link href="/css/style.css" rel="stylesheet">
     <title><%= title %></title>
     <style>
       .padpage {
